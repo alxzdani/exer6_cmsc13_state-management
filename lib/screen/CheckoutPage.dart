@@ -16,14 +16,17 @@ class CheckoutPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          getItems(context),
-          computeCost(),
+          getItems(context), // display items
+          computeCost(), // display cost
           const Divider(height: 4, color: Colors.black),
           Flexible(
             child: Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+
+                  //PAY NOW BUTTON
+
                   ElevatedButton(
                     onPressed: () {
                       final cart = context.read<ShoppingCart>();
@@ -31,7 +34,7 @@ class CheckoutPage extends StatelessWidget {
                         cart.checkout();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text("Payment Successful"),
+                            content: Text("Payment Successful!"),
                             duration: Duration(seconds: 2),
                           ),
                         );
@@ -42,7 +45,7 @@ class CheckoutPage extends StatelessWidget {
                         Navigator.pushNamed(context, "/products", arguments: "Payment Successful!");
 
 
-                      } else {
+                      } else { // catcher for the case that user can still see the checkout button
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text("No items to checkout"),
@@ -51,7 +54,7 @@ class CheckoutPage extends StatelessWidget {
                         );
                       }
                     },
-                    child: const Text("Pay Now"),
+                    child: const Text("Pay Now!"), // text button
                   ),
                 ],
               ))),
@@ -60,6 +63,8 @@ class CheckoutPage extends StatelessWidget {
     );
   }
 
+
+  // get the item from the cart
   Widget getItems(BuildContext context) {
     List<Item> products = context.watch<ShoppingCart>().cart;
     String productname = "";
@@ -103,6 +108,8 @@ class CheckoutPage extends StatelessWidget {
           ));
   }
 
+
+  //get the total cost
   Widget computeCost() {
     return Consumer<ShoppingCart>(builder: (context, cart, child) {
        return Text("Total: ${cart.cartTotal}");
