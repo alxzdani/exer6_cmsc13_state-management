@@ -1,16 +1,23 @@
 # exer6_cmsc23
 
-A new Flutter project.
+Name: Alexis Danielle G. Aguinaldo
 
-## Getting Started
+Section: CMSC 23 UV4L
 
-This project is a starting point for a Flutter application.
+## Exercise 6
 
-A few resources to get you started if this is your first Flutter project:
+For this exercise, implement the checkout feature of the sample state
+management app from the lab class.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Functions of the Application
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- My Catalog - list of items can be seen here, where in user can add items to the cart
+- My Cart - where added item is stored
+    - Has two buttons
+            - RESET, which only show when the cart is NOT empty
+            - CHECKOUT, which also show when the cart is NOT empty
+    - hence user can't reset or checkout when cart is empty
+- Checkout page - user wants to checkout their item
+    - Has 'Pay Now' button where in user can pay their bill
+    - After paying it will navigate back to My Catalog and reset the state of My Cart
+

@@ -9,7 +9,7 @@ import '../provider/shoppingcart_provider.dart';
 class CheckoutPage extends StatelessWidget {
   const CheckoutPage({super.key});
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Checkout")),
@@ -35,6 +35,13 @@ class CheckoutPage extends StatelessWidget {
                             duration: Duration(seconds: 2),
                           ),
                         );
+
+                        cart.removeAll(); // reset the state of the cart
+                        
+                        // navigate back to MyCatalog after successful payment
+                        Navigator.pushNamed(context, "/products", arguments: "Payment Successful!");
+
+
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

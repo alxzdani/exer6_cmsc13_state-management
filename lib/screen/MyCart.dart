@@ -8,6 +8,7 @@ class MyCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(title: const Text("My Cart")),
       body: Column(
@@ -21,11 +22,14 @@ class MyCart extends StatelessWidget {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                context.read<ShoppingCart>().removeAll();
-                              },
-                              child: const Text("Reset"),
+                            Visibility( // add visibility widget so that when the cart is empty reset button will not be shown
+                              visible: context.read<ShoppingCart>().cart.isNotEmpty,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  context.read<ShoppingCart>().removeAll();
+                                },
+                                child: const Text("Reset"),
+                              ),
                             ),
 
                             //CHECKOUT BUTTON
@@ -34,6 +38,8 @@ class MyCart extends StatelessWidget {
                                 return cart.cart.isNotEmpty
                                     ? ElevatedButton(
                                         onPressed: () {
+
+                                          //  CHECKOUT BUTTON WILL ONLY SHOW IF THE SHOPPING CART IS NOT EMPTY
                                           if (context.read<ShoppingCart>().cart.isNotEmpty) {
                                             Navigator.pushNamed(context, '/checkout');
                                           } else {
